@@ -1,16 +1,15 @@
-#Entering the path where the files exists for deployment
-echo "Please enter the path to go"
-read path
+#!/bin/bash
+# Check if the path is provided
+if [ -z "$1" ]; then
+    echo "Path is not provided"
+    exit 1
+fi
+# Get the path from the argument
+path=$1
 echo "The path entered is $path"
-#Navigating to path that is entered
-cd $path
-#Stroring the path in a variable which is not necessary
-pd=$(pwd)
-echo "The current directory is $pd"
-#Getting the extensions and files that is available in the given path
-#echo "The extension of the file is ${filename##*.}"
-#filenamewithoutextension=$(basename -s ${filename##*.} ./$filename)
-#echo "The finemane without extension is $filenamewithoutextension"
+# Navigate to the provided path
+cd $path || exit
+echo "The current directory is $(pwd)"
 #Getting the count of availble files with .jar & .ear extension
 jarCount=$(find $path -type f -name "*.jar" | grep -c '.jar$')
 earCount=$(find $path -type f -name "*.ear" | grep -c '.ear$')
