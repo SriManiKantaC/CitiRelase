@@ -34,7 +34,7 @@ relnopath=$2
 #Printing and checking the value of jar array in each index position
            echo "Value at $i position  is ${jar_files[i]}"
 #Getting the release no for each index position of jar while running the loop
-           jarReleaseValues=$(grep "^${jar_files[i]}" relnopath | cut -d'=' -f2)
+           jarReleaseValues=$(grep "^${jar_files[i]}" $relnopath | cut -d'=' -f2)
 #Printing and checking the value of jar relase no for each index position
            echo "Release no. of ${jar_files[i]} is $jarReleaseValues"
 #Tar the jar file accoridngly for the release no
@@ -51,7 +51,7 @@ if [ $earCount -ge 1 ]; then
         for ((i=0; i<$earCount; i++ ));
          do
           echo "Value at $i position is ${ear_files[i]}"
-          earReleaseValues=$(grep "^${ear_files[i]}" relnopath | cut -d'=' -f2)
+          earReleaseValues=$(grep "^${ear_files[i]}" $relnopath | cut -d'=' -f2)
           echo "Release no. of ${ear_files[i]} is $earReleaseValues"
           tar -cf inmobilepackDEVTAR.$earReleaseValues ${ear_files[i]}
          done
